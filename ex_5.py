@@ -2,7 +2,7 @@
 
 # 1. user input age in years, print output age in months
 age1 = input("How old are you in years? ")
-age1_months = float(age1)*12
+age1_months = float(age1) * 12
 print("You age in months is %d" % age1_months)
 
 """
@@ -28,7 +28,7 @@ print("You age in months is %d" % age_months)
 
 # 2. user input age in years, print output age in months
 age2_months = input("How old are you in months? ")
-age2 = float(age2_months)/12
+age2 = float(age2_months) / 12
 print("You're %.2f years old" % age2)
 
 """
@@ -94,7 +94,7 @@ Uri's comments:
 a1 = int(input("We're going to generatae an arithmetic sequence,\nEnter the first number in sequence: "))
 d = int(input("Enter the difference: "))
 n = int(input("Enter number of elements: "))
-sn = n/2 * (2*a1 + (n-1) * d)
+sn = n / 2 * (2 * a1 + (n - 1) * d)
 print('Sum is % d' % sn)
 
 """

@@ -41,7 +41,7 @@ def ex11_3():
 def ex11_4():
     while True:
         x = random.randint(1, 1000000)
-        if x % 7 == 0 and x % 13 == 0 and x % 15 == 0:
+        if (x % 7 == 0) and (x % 13 == 0) and (x % 15 == 0):
             print("The number %d meets the criteria! Yay :)" % x)
             return
         else:
