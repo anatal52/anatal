@@ -11,6 +11,16 @@ def ex11_1():
     print("The biggest number is: %d" % max(nums))
 
 
+"""
+Uri's comments:
+==============
+
+* This function works, but you didn't run it. You should run it from the main file.
+* It's better to write each assignment in a different file.
+* If you don't need i to start with 1, you can just use and it's more common to use range(10).
+
+"""
+
 # 2. Input age print months with error
 def ex11_2():
     i = 0
@@ -26,6 +36,14 @@ def ex11_2():
         except ValueError:
             i += 1
 
+"""
+Uri's comments:
+==============
+
+* You print the input, this is not what the assignment expects. The input is in years and 
+  the assignment expect you to convert it to months. Please try again.
+
+"""
 
 # read and print until empty row
 def ex11_3():
@@ -36,6 +54,13 @@ def ex11_3():
         big_string += line+"\n"
     print(big_string.rstrip("\n"))
 
+"""
+Uri's comments:
+==============
+
+* You forgot to reverse the lines before printing.
+
+"""
 
 # find int % 7, 13, 15
 def ex11_4():
@@ -48,6 +73,15 @@ def ex11_4():
             print("The number %d doesn't meets the criteria, we'll try again" % x)
     print(x)
 
+"""
+Uri's comments:
+==============
+
+* You used "random" but didn't import it. If you want to use "randint" after 
+  you imported it, just use "randint".
+  PyCharm also warns about it.
+
+"""
 
 # find least common multiple
 def ex11_5():
@@ -61,6 +95,16 @@ def ex11_5():
         else:
             z += 1
 
+"""
+Uri's comments:
+==============
+
+* Very good! This code works.
+* Just a note - this works for numbers <= 10, but if the numbers would be
+  bigger (~6 digits or more), then this algorithm is very unefficient,
+  and there are algorithms which are much more efficient.
+  
+"""
 
 # guess a number 1-100
 def ex11_6():
@@ -79,3 +123,12 @@ def ex11_6():
 
 if __name__ == '__main__':
     ex11_6()
+
+"""
+Uri's comments:
+==============
+
+* Very good! This code works.
+* If you want the user to guess the number, don't print it.
+  
+"""
