@@ -6,12 +6,40 @@ from random import randint
 def ex11_1():
     nums = []
     for i in range(1, 11):
-        num = int(input("Please enter a number #%d: " % i))
+        # 1. Using %d is a bit outdated. Today it is considered more modern to use f{} strings:
+        # Please see lesson here:
+        # https://www.tocode.co.il/bundles/advanced-python3/lessons/python3-cool-features
+        num = int(input(f"Please enter a number #{i}: "))
         nums.append(num)
-    print("The biggest number is: %d" % max(nums))
+    print(f"The biggest number is: {max(nums)}")
 
+    # 2. Look at the pattern here: You create a list (nums = []), then you iterate over some other stuff and each iteration
+    #    creates a new item in the list. This is exactly a list comprehension.
+    #    A better way to write the previous loop is therefore:
+    nums = [int(input(f("Please enter a number #{i + 1}: "))) for i in range(10)]
+
+    # 3.But actually we don't need the "remember" all the values and search for the
+    #   maximum in the end. It would be more memory efficient to just keep track of the maximum values
+    #   as numbers arrive:
+    max_num = float('-inf')
+    for i in range(10):
+        num = int(input(f"Please enter a number #{i}: "))
+        max_num = max(num, max_num)
+    print(max_num)
+
+    # 4. Some weird people would combine 2 and 3 to get this:
+    from functools import reduce
+    reduce(max, (int(input(f"Please enter a number #{i + 1}: ")) for i in range(10)), float('-inf'))
+    # This is very interesting because, like (3), it won't keep all the values in memory,
+    # but at the same time uses the short comprehension syntax.
+    # For more information about how it works please watch this lesson:
+    # https://www.tocode.co.il/bundles/advanced-python3/lessons/generators
 
 # 2. Input age print months with error
+# In the example here:
+# https://www.tocode.co.il/bundles/python/lessons/10-exceptions
+# I demonstrate how to write a function "read_number_stubbornly" (you can read about it in the text tab if you don't have time to watch the video)
+# Such a function will help to simplify your code below
 def ex11_2():
     i = 0
     while True:
@@ -43,7 +71,8 @@ def ex11_4():
         x = random.randint(1, 1000000)
         if (x % 7 == 0) and (x % 13 == 0) and (x % 15 == 0):
             print("The number %d meets the criteria! Yay :)" % x)
-            return
+            # I think "break" is more fitting here
+            break
         else:
             print("The number %d doesn't meets the criteria, we'll try again" % x)
     print(x)
