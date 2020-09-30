@@ -1,5 +1,5 @@
 # https://www.tocode.co.il/bundles/python/lessons/11-syntax-lab
-from random import randint
+from random import randint, random
 
 
 # 1. user input 10 nums, print max
@@ -16,7 +16,7 @@ def ex11_1():
     # 2. Look at the pattern here: You create a list (nums = []), then you iterate over some other stuff and each iteration
     #    creates a new item in the list. This is exactly a list comprehension.
     #    A better way to write the previous loop is therefore:
-    nums = [int(input(f("Please enter a number #{i + 1}: "))) for i in range(10)]
+    nums = [int(input(f"Please enter a number #{i + 1}: ")) for i in range(10)]
 
     # 3.But actually we don't need the "remember" all the values and search for the
     #   maximum in the end. It would be more memory efficient to just keep track of the maximum values
