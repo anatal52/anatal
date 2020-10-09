@@ -51,18 +51,11 @@ Uri's comments:
 # I demonstrate how to write a function "read_number_stubbornly" (you can read about it in the text tab if you don't have time to watch the video)
 # Such a function will help to simplify your code below
 def ex11_2():
-    i = 0
     while True:
         try:
-            if i == 0:
-                prompt = "Enter your age: "
-            else:
-                prompt = "This can't be your age, please try again: "
-            age = int(input(prompt))
-            print("Your age in months is %d" % age)
-            return
+            return "You age in months is {}".format(int(input("Enter your age: "))*12)
         except ValueError:
-            i += 1
+            print("Please try again.")
 
 """
 Uri's comments:
@@ -73,14 +66,16 @@ Uri's comments:
 
 """
 
+
 # read and print until empty row
 def ex11_3():
     big_string = ""
-    line = "\n"
-    while line:
+    while True:
         line = input("Enter a line: ")
-        big_string += line+"\n"
-    print(big_string.rstrip("\n"))
+        big_string = line+"\n"+big_string
+        if line == "":
+            return big_string
+
 
 """
 Uri's comments:
@@ -151,7 +146,7 @@ def ex11_6():
 
 
 if __name__ == '__main__':
-    ex11_6()
+    print(ex11_3())
 
 """
 Uri's comments:
