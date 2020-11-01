@@ -1,6 +1,6 @@
 # https://www.tocode.co.il/bundles/python/lessons/11-syntax-lab
 from random import randint, random
-
+import numpy as np
 
 # 1. user input 10 nums, print max
 def ex11_1():
