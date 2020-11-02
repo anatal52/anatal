@@ -1,17 +1,27 @@
 # https://www.tocode.co.il/bundles/python/lessons/19-data-lab
 
+# Always write all imports at the top of the file
+# (it's easier to understand that way)
+from collections import defaultdict
+import sys
+
 def ex19_1():
     """1. get user & password and verify """
-    from collections import defaultdict
+    # Interesting idea, however it seems you never use this default
+    # value. I would use a normal dict here
     users_dict = defaultdict(lambda: "INTRUDER ALERT")
-    users_dict["apple"] = "red"
-    users_dict["lettuce"] = "green"
-    users_dict["lemon"] = "yellow"
-    users_dict["orange"] = "orange"
+    # When you ned to update multiple values it's nicer to use dict.update
+    user_dict.udpate({
+        "apple": "red",
+        "lettuce": "green",
+        "lemon": "yellow",
+        "orange": "orange",
+    })
 
     user = input("User name: ")
     password = input("Password: ")
 
+    # What would happen if I select the pair: ynon/INTRUDER ALERT ?
     if users_dict[user] == password:
         print("Welcome Master")
     else:
@@ -20,16 +30,19 @@ def ex19_1():
 
 def ex19_2():
     """2. Calc grades avg and print higher grades """
-    import sys
+    # No need to specify the end here (sys.argv[1:] seems nicer)
     grades_list = [float(x) for x in sys.argv[1:21]]
+    # I would calculate the average in advance outside the loop,
+    # as in current code you calculate the sum again and again for each check
+    # i.e.
+    # average = sum(grades_list) / len(grades_list)
+    # higher_grades = [x for x in grades_list if x > average]
     high_grades_list = [x for x in grades_list if x > sum(grades_list) / len(grades_list)]
     print(f"These grades are higher then the average: {high_grades_list}")
 
 
 def ex19_3():
     """3. Get hostnames from cmd and print ip from host file """
-    import sys
-    from collections import defaultdict
     hosts_dict = defaultdict(lambda: "IP Not found")
     hosts_list = [x for x in sys.argv[1:]]
     with open('hosts', 'r', encoding='UTF-8') as f:
@@ -37,6 +50,8 @@ def ex19_3():
             hostname, ip = line.strip().split("=")
             hosts_dict[hostname] = ip
     for host_request in hosts_list:
+        # I would use a normal dictionary and display a completely different message
+        # if value is not there
         print(f"{host_request}'s IP: {hosts_dict[host_request]}")
 
 

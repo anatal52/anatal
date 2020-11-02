@@ -3,8 +3,11 @@
 # Question: I couldn't figure out how to add dependencies if they don't exist and how to not build twice....
 # בניית רכיב שתלוי ברכיבים אחרים תבנה אוטומטית גם את כל הרכיבים בהם הוא תלוי. אין צורך לבנות רכיב פעמיים
 
+# Why not use an instance variable (is_built) ?
+
 class Widget:
     def __init__(self, name):
+        self.is_built = False
         self.name = name
         self._dependencies = []
 
@@ -12,6 +15,7 @@ class Widget:
         self._dependencies.extend(args)
 
     def build(self):
+        self.is_build = True
         print(f"{','.join([d.name for d in self._dependencies])}")
 
 
