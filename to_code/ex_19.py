@@ -7,22 +7,16 @@ import sys
 
 def ex19_1():
     """1. get user & password and verify """
-    # Interesting idea, however it seems you never use this default
-    # value. I would use a normal dict here
-    users_dict = defaultdict(lambda: "INTRUDER ALERT")
-    # When you ned to update multiple values it's nicer to use dict.update
-    user_dict.udpate({
+    users_dict = {
         "apple": "red",
         "lettuce": "green",
         "lemon": "yellow",
         "orange": "orange",
-    })
-
+    }
     user = input("User name: ")
     password = input("Password: ")
 
-    # What would happen if I select the pair: ynon/INTRUDER ALERT ?
-    if users_dict[user] == password:
+    if user in users_dict.keys() and users_dict[user] == password:
         print("Welcome Master")
     else:
         print("INTRUDER ALERT")
@@ -67,4 +61,4 @@ def ex19_4():
         print(" ".join(map(str, val)))
 
 
-ex19_4()
+ex19_1()

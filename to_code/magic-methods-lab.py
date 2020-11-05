@@ -1,0 +1,1 @@
+# https://www.tocode.co.il/bundles/advanced-python3/lessons/magic-methods-lab
