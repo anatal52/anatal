@@ -119,7 +119,9 @@ for val in it.islice(sq_next, 10):
 
 # 2 uniq sequence
 
-def uniq():
-    pass
+def uniq(list):
+    return set(list)
+
+print(uniq([2,2,2,3,4,5,1,1,1]))
 
 # find
