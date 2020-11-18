@@ -1,6 +1,5 @@
 # Generate file with words, load and sort, start typing and present first 10 words
 import sys
-from collections import defaultdict
 from PyQt5.QtWidgets import *
 
 
@@ -14,21 +13,30 @@ class MyWidget(QWidget):
         self.list = QListWidget(self)
         vbox.addWidget(self.search)
         vbox.addWidget(self.list)
-        self.search.textChanged.connect(self.searchtextchanged)
+        self.search.textChanged.connect(self.textbox_upd)
+        self.clear_results()
 
-    def searchtextchanged(self, text):
-        word = self.search.text().lower()
-        if word == "":
-            results = []
-        else:
-            results = [x.capitalize() for x in words if word in x][:10]
+    def get_words(self, file_path="meteo_ex.txt"):
+        with open(file_path, "rb") as f:
+            words = sorted(set([word.decode().capitalize() for line in f for word in line.split() if word.isalnum()]), key=lambda x: 'Z'+x if x[0].isdigit() else x)
+        return words
+
+    def clear_results(self):
         self.list.clear()
-        self.list.addItems(results)
+        self.words = self.get_words()
+        self.list.addItems(self.words)
+        self.len = len(self.search.text())
+
+    def textbox_upd(self, text):
+        if len(text) > 0:
+            self.list.clear()
+            self.words = [x.capitalize() for x in (self.words if len(text) > self.len else self.get_words()) if x.startswith(text.capitalize())]
+            self.list.addItems(self.words[:10])
+        else:
+            self.clear_results()
+        self.len = len(text)
 
 
-dict = defaultdict(list)
-with open("meteo_ex.txt", "rb") as f:
-    words = sorted(set([word.decode().casefold() for line in f for word in line.split() if word.isalnum()]))
 app = QApplication(sys.argv)
 w = MyWidget()
 w.show()
