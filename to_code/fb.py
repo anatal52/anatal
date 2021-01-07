@@ -1,10 +1,10 @@
 # EX 1 implement count_words(input_str) function - returns number of words from the input string
 #
-# def count_words(input_str):
-#     print(input_str.split())
-#     word_count = len(input_str.split())
-#     return word_count
-#
+def count_words(input_str):
+    print(input_str.split())
+    word_count = len(input_str.split())
+    return word_count
+
 #
 # assert count_words('') == 0
 # assert count_words('Hello World') == 2
@@ -19,22 +19,27 @@
 # a dictionary with a key as numbers and value as count the numbers
 
 #
-# def histogram(input_list):
-#     # from collections import defaultdict
-#     # output_map = defaultdict(int)
-#     output_map = {}
-#     for i in input_list:
-#         if i not in output_map:
-#             output_map[i] = 0
-#         output_map[i] = output_map[i] + 1
-#     return output_map
-#
-#
-# assert (histogram([2, 4, 1, 2, 3, 2, 1]) == {2: 3, 4: 1, 1: 2, 3: 1})
-# assert (histogram([2, 1, 3, 4, 2, 4, 3, 4]) == {2: 2, 1: 1, 3: 2, 4: 3})
-# assert (histogram([1, 2, 3, 4]) == {1: 1, 2: 1, 3: 1, 4: 1})
-# assert (histogram([]) == {})
-# print("passed")
+def histogram(input_list):
+    # from collections import defaultdict
+    # output_map = defaultdict(int)
+    output_map = {}
+    for i in input_list:
+        if i not in output_map:
+            output_map[i] = 0
+        output_map[i] = output_map[i] + 1
+    # print(([num for num, count in output_map.items() if count == 1] or [None])[0])
+    if output_map:
+        print(f"First non-recurring {sorted(output_map, key=output_map.get)[0]}")
+        print(f"Most recurring {sorted(output_map, key=output_map.get, reverse=True)[0]}")
+
+    return output_map
+
+
+assert (histogram([2, 4, 1, 2, 3, 2, 1]) == {2: 3, 4: 1, 1: 2, 3: 1})
+assert (histogram([2, 1, 3, 4, 2, 4, 3, 4]) == {2: 2, 1: 1, 3: 2, 4: 3})
+assert (histogram([1, 2, 3, 4]) == {1: 1, 2: 1, 3: 1, 4: 1})
+assert (histogram([]) == {})
+print("passed")
 
 
 # EX 3 implement array_unique(input_list) function -
@@ -42,44 +47,44 @@
 # a list with duplicates removed
 # order should be preserved from input based on first occurrence of the element
 
-# def array_unique(input_list):
-#     unique_list = []
-#     for i in input_list:
-#         if i not in unique_list:
-#             unique_list.append(i)
-#     return unique_list
-#
+def array_unique(input_list):
+    unique_list = []
+    for i in input_list:
+        if i not in unique_list:
+            unique_list.append(i)
+    return unique_list
+
 
 def cmp(a, b):
     return (a > b) - (a < b)
 
-
+#
 # assert cmp(array_unique([1,2,3,5,6,1,2,4]), [1,2,3,5,6,4]) == 0
 # assert cmp(array_unique([1,2]), [1,2]) == 0
 # assert cmp(array_unique([]), []) == 0
 # assert cmp(array_unique([1,1,1,1]), [1]) == 0
 # print("passed")
-#
+
 #
 # EX 4 implement list_flatten(input_list) function
 # given a list of lists as input, write a function that returns a list
 # after removing all the nested lists
 
-# def list_flatten(input_list):
-#     output_list = []
-#
-#     def append_list(sublist):
-#         for i in sublist:
-#             if isinstance(i, int):
-#                 output_list.append(i)
-#             else:
-#                 append_list(i)
-#
-#     append_list(input_list)
-#     print(output_list)
-#     return output_list
-#
-#
+def list_flatten(input_list):
+    output_list = []
+
+    def append_list(sublist):
+        for i in sublist:
+            if isinstance(i, int):
+                output_list.append(i)
+            else:
+                append_list(i)
+
+    append_list(input_list)
+    print(output_list)
+    return output_list
+
+
 # assert cmp(list_flatten([1,2, [3,4, [5,6]], 7]), [1,2,3,4,5,6,7]) == 0
 # assert cmp(list_flatten([[],[[]]]), []) == 0
 # assert cmp(list_flatten([[[1]]]), [1]) == 0
@@ -94,15 +99,16 @@ def cmp(a, b):
 # there'll be p% values (or observations) less than that value
 # the value of p would be between 0 and 1
 
-#
-# def percentile(input_list, p):
-#     from math import ceil
-#     if input_list:
-#         input_list.sort()
-#         n = ceil(p * len(input_list))
-#         percentile_value = input_list[n]
-#         return percentile_value
-#
+
+def percentile(input_list, p):
+    from math import ceil
+    if input_list:
+        input_list.sort()
+        n = ceil(p * len(input_list))
+        percentile_value = input_list[n]
+        return percentile_value
+
+
 # assert percentile([0,1,2,3,4,5,6,7],0.2) == 2
 # assert percentile([0,1,2,3,4],0.5) == 3
 # assert percentile([25,50,75,100],0.5) == 75
@@ -123,11 +129,41 @@ def to_bin(n):
     return bin_str
 
 
-assert to_bin(2) == '10'
-assert to_bin(7) == '111'
-assert to_bin(45) == '101101'
-assert to_bin(32) == '100000'
-assert to_bin(0) == '0'
-print("passed")
+# assert to_bin(2) == '10'
+# assert to_bin(7) == '111'
+# assert to_bin(45) == '101101'
+# assert to_bin(32) == '100000'
+# assert to_bin(0) == '0'
+# print("passed")
 
 
+
+# 1) Print Max element of a given list
+# 2) Print median of a given list
+# 3) Print the first nonrecurring element in a list
+# 4) Print the most recurring element in a list
+# 5) Greatest common Factor
+
+
+
+def gcf(x, y):
+    z = min(x, y)
+    print(z)
+    while True:
+        if x % z == 0 and y % z == 0:
+            return f"Least common multiple of {x},{y} is {z}"
+        else:
+            z += 1
+
+
+def gcf1(x, y):
+    from math import gcd
+    z = gcd(x, y)
+    return f"gcd Least common dividor of {x},{y} is {z}"
+
+
+from random import randint
+x = randint(1, 10)
+y = randint(1, 10)
+print(gcf(x,y))
+print(gcf1(x,y))
